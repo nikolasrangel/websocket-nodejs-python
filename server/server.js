@@ -14,7 +14,7 @@ server.listen(port, () => {
 });
 
 /* Initialize the WebSocket server instance */
-var wss = new WebSocket.Server({ server });
+const wss = new WebSocket.Server({ server });
 
 /* On any connection */
 wss.on('connection', (ws) => {
@@ -32,7 +32,8 @@ wss.on('connection', (ws) => {
 
         /* Generate a python process using nodejs child_process module */
         const spawn = require('child_process').spawn;
-        const py_process = spawn('python3', ["/home/nikolas/codes/websocket-nodejs-python/server/factorial.py"]);
+        //const py_process = spawn('python3', ["/home/nikolas/codes/websocket-nodejs-python/server/factorial.py"]);
+        const py_process = spawn('python3', ["factorial.py"]);
 
         /* Send the number to py_process */
         py_process.stdin.write(messageServer.number.toString());
@@ -43,12 +44,10 @@ wss.on('connection', (ws) => {
         /* Define what to do on everytime node application receives data from py_process */
         py_process.stdout.on('data', function(data){
             factorialResult = data.toString();
-            //console.log('oi ne');
         });
     
         /* At the end, send the result from py_process computing to client */
         py_process.stdout.on('end', function(){
-            //console.log("server fim");
             /* Send the message back to the client */
             ws.send(JSON.stringify({ time: messageServer.time, number: messageServer.number, fact: factorialResult }));
         });

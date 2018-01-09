@@ -1,6 +1,6 @@
 /* Using the reconnecting-websocket library to automatically reconnect any disrupted connections in the browser */
-  
-var connection = new ReconnectingWebSocket("ws://localhost:3746");
+const host = (location.host ? location.host : "localhost");
+var connection = new ReconnectingWebSocket("ws://" + host + ":3746");
 
 /* Function which aims to handle receive messages from server */
 connection.onmessage = function(message) {
