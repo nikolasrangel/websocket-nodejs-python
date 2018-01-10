@@ -5,19 +5,19 @@ const http = require('http');
 
 /* Server port */
 const PORT = process.env.PORT || 3746;
-const INDEX = path.join(__dirname, 'public');
-
-//.use((req, res) => res.sendFile(INDEX) )
+/* Tell express to deliver files found in this folder*/
+const PUBLIC  = path.join(__dirname, 'public');
 
 const app = express()
-    .use(express.static(path.join(__dirname, 'public')));
+    .use(express.static(PUBLIC));
 
-// /* Initialize an http server */
+/* Initialize an http server */
 const server = http.createServer(app);
 
 /* Initialize the WebSocket server instance */
 const wss = new WebSocket.Server({ server });
 
+/* Server port */
 server.listen(PORT, function listening() {
     console.log('Listening on %d', server.address().port);
   });
@@ -38,8 +38,7 @@ wss.on('connection', (ws) => {
 
         /* Generate a python process using nodejs child_process module */
         const spawn = require('child_process').spawn;
-        //const py_process = spawn('python3', ["/home/nikolas/codes/websocket-nodejs-python/server/factorial.py"]);
-        const py_process = spawn('python3', ["factorial.py"]);
+        const py_process = spawn('python3', ["python/factorial.py"]);
 
         /* Send the number to py_process */
         py_process.stdin.write(messageServer.number.toString());
@@ -59,5 +58,5 @@ wss.on('connection', (ws) => {
         });
 
     });
-    console.log("Have a connection at port 3746");
+    console.log(`Have a connection at port ${server.address().port}`);
 });

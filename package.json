@@ -1,13 +1,13 @@
 {
   "name": "websocket-nodejs-python",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple example using WebSocket client and Node.js to calculate factorial of a number with Python3",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Nikolas",
+  "author": "Nikolas J. Rangel",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.2",
