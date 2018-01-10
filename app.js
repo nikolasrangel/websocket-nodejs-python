@@ -3,6 +3,10 @@ const WebSocket = require('ws');
 const path = require('path');
 const http = require('http');
 
+/* Store the message from client */
+var messageServer = [];
+var factorialResult = 0;
+
 /* Server port */
 const PORT = process.env.PORT || 3746;
 /* Tell express to deliver files found in this folder*/
@@ -24,12 +28,12 @@ server.listen(PORT, function listening() {
 
 /* On any connection */
 wss.on('connection', (ws) => {
-    /* Store the message from client */
-    var messageServer = [];
-    var factorialResult = 0;
-
     /* Connection is OK then add an event */
     ws.on('message', (message) => {
+        /* Clean variables */
+        messageServer = [];
+        factorialResult = 0;
+
         /* Log the received message */
         console.log(`Message received from client: ${message}`);
 
