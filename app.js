@@ -20,13 +20,12 @@ const port = 3746;
 
 /* Initialize an http server */
 const http_ = require('http');
-const server = http_.createServer(function (request, response) {
-});
+const server = http_.createServer(app);
 
-/* Start our server */
-server.listen(PORT, () => {
-    console.log(`Server started at port ${server.address().port}.`);
-});
+// /* Start our server */
+// server.listen(PORT, () => {
+//     console.log(`Server started at port ${server.address().port}.`);
+// });
 
 /* Initialize the WebSocket server instance */
 const wss = new WebSocket.Server({ server });
