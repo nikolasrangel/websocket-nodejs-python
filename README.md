@@ -1,8 +1,8 @@
 # WebSocket + Node.js + Python 3
 
-Example of a simple application using WebSocket and Node.js to create a Python 3 process to calculate the factorial of a number and sending the result to client.
+Example of a simple application using WebSocket and Node.js to create a Python 3 process to calculate the factorial of a number and send the result to client.
 
-Ready for deployment to [Heroku](heroku.com).
+Ready for deployment to [Heroku](https://heroku.com).
 
 ## Client
 
