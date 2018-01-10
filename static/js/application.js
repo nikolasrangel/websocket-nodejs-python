@@ -1,5 +1,5 @@
 /* Using the reconnecting-websocket library to automatically reconnect any disrupted connections in the browser */
-const host = (location.host ? location.host : "localhost");
+const host = (location.host ? location.host : "localhost:3746");
 var connection = new ReconnectingWebSocket("wss://" + host);
 
 /* Function which aims to handle receive messages from server */

@@ -1,31 +1,19 @@
-var express = require('express');
-var app = express();
-var path = require('path');
-
+const express = require('express');
+const http = require('http');
+const url = require('url');
+const WebSocket = require('ws');
+const path = require('path');
+/* Server port */
 const PORT = process.env.PORT || 3746;
 
-app.use(express.static(__dirname + '/static'));
+const app = express();
+app.use(express.static(__dirname + '/static'))
+app.get('/', (req, res) => res.sendFile(path.join(__dirname + '/index.html')))
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
-
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/index.html'));
-});
-
-app.listen(PORT);
-
-const WebSocket = require("ws");
-
-/* Server port */
-const port = 3746;
 
 /* Initialize an http server */
-const http_ = require('http');
-const server = http_.createServer(app);
-
-// /* Start our server */
-// server.listen(PORT, () => {
-//     console.log(`Server started at port ${server.address().port}.`);
-// });
+const server = http.createServer(app);
 
 /* Initialize the WebSocket server instance */
 const wss = new WebSocket.Server({ server });
