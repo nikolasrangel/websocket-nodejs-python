@@ -22,7 +22,7 @@ const server = http_.createServer(function (request, response) {
 });
 
 /* Start our server */
-server.listen(port, () => {
+server.listen(process.env.PORT, () => {
     console.log(`Server started at port ${server.address().port}.`);
 });
 
