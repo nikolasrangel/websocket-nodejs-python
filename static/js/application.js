@@ -1,9 +1,9 @@
 /* Using the reconnecting-websocket library to automatically reconnect any disrupted connections in the browser */
-const host = (location.host ? location.host : "localhost:3746");
-var connection = new ReconnectingWebSocket("wss://" + host);
+const HOST = location.origin.replace(/^http/, 'ws')
+const ws = new WebSocket(HOST);
 
 /* Function which aims to handle receive messages from server */
-connection.onmessage = function(message) {
+ws.onmessage = function(message) {
     var data = JSON.parse(message.data);
     $("#chat-text").append("<div class='panel panel-default'><div class='panel-heading'>" + $('<span/>').text(data.time).html() + "</div><div class='panel-body'>" + $('<span/>').text(`Factorial of ${data.number} is ${data.fact}`).html() + "</div></div>");
     $("#chat-text").stop().animate({
@@ -17,6 +17,6 @@ $("#input-form").on("submit", function(event) {
     event.preventDefault();
     /* Grab the number from the form and send it to the server */
     var handle = $("#input-handle")[0].value;
-    connection.send(JSON.stringify({ number: handle, time: new Date().toLocaleTimeString() }));
+    ws.send(JSON.stringify({ number: handle, time: new Date().toLocaleTimeString() }));
     $("#input-handle")[0].value = "";
 });
