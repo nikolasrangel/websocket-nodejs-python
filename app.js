@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var path = require('path');
 
+const PORT = process.env.PORT || 3746;
+
 app.use(express.static(__dirname + '/static'));
 
 
@@ -9,7 +11,7 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-app.listen(process.env.PORT || 8080);
+app.listen(PORT);
 
 const WebSocket = require("ws");
 
@@ -22,7 +24,7 @@ const server = http_.createServer(function (request, response) {
 });
 
 /* Start our server */
-server.listen(process.env.PORT, () => {
+server.listen(PORT, () => {
     console.log(`Server started at port ${server.address().port}.`);
 });
 
