@@ -1,6 +1,6 @@
 /* Using the reconnecting-websocket library to automatically reconnect any disrupted connections in the browser */
-const HOST = location.origin.replace(/^http/, 'ws')
-const ws = new WebSocket(HOST);
+var HOST = location.origin.replace(/^http/, 'ws');
+var ws = new WebSocket(HOST);
 
 /* Function which aims to handle receive messages from server */
 ws.onmessage = function(message) {
